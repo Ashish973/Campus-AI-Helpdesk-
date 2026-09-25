@@ -1,0 +1,6 @@
+__pycache__/
+.venv/
+kb/
+venv/
+.env
+vector_store/
