@@ -1,18 +1,22 @@
 
 import os
-from dotenv import load_dotenv
-from langchain.chat_models import init_chat_model
 from langchain_groq import ChatGroq
 from sympy import re
 from Retrieval_pipeline import rag_retreiver
 import streamlit as st 
+from dotenv import load_dotenv
 
 
 load_dotenv()
 
+groq_api_key = os.getenv("GROQ_API_KEY")
+
+if not groq_api_key:
+    groq_api_key = st.secrets.get("GROQ_API_KEY")
+
 llm = ChatGroq(
     model="openai/gpt-oss-120b",
-    api_key=os.getenv("GROQ_API_KEY"),
+    api_key=groq_api_key,
     temperature=0.1
 )
 
